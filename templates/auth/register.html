@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container text-center mt-5">
+<main class="form-signin w-100 m-auto">
+    <form method="post">
+        {% csrf_token %}
+        {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{error}}
+          </div>
+          {% endif %}
+      <h1 class="h3 mt-4 pt-5 mb-4 fw-normal">Please Register</h1>
+
+      <div class="form-floating">
+        <input type="text" class="form-control mb-2" id="uname" name="uname" placeholder="Username">
+        <label for="floatingInput">Username</label>
+      </div>
+  
+      <div class="form-floating">
+        <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name">
+        <label for="floatingInput">First Name</label>
+      </div>
+      <div class="form-floating">
+        <input type="text" class="form-control mt-2" id="lname" name="lname" placeholder="Last Name">
+        <label for="floatingInput">Last Name</label>
+      </div>
+      <div class="form-floating">
+        <input type="email" name="email" class="form-control mt-2" id="email" placeholder="name@example.com">
+        <label for="floatingPassword">Email</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="password" name="pass" class="form-control mt-2" id="pass" placeholder="Password">
+        <label for="floatingPassword">Password</label>
+      </div>
+      <p>Already have an account? <a href="{% url 'login' %}" class="mt-3"> Login </a></p>
+      <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Sign in</button>
+    </form>
+  </main>
+
+</div>
+
+{% endblock %}

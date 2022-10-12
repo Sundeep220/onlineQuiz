@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div id="app" class="mt-5 pt-5">
+        <div class="container">
+          <form @submit.prevent="handleSubmit()">
+            <div v-for="(ques , index) in questions" :key="ques.id" class="mt-4">
+                <p>[[index+1]]. [[ques.question]]</p>
+                <div v-for="(opt , i) in ques.options">
+                    <div class="form-check">
+                      <input :id="'radio-'+ques.id" @change="check(index , i , ques.id)" class="form-check-input" type="radio" :name="'opt'+ques.id" :value="opt">
+                        [[opt]]
+                    </div>
+                </div>
+                <p :id="'message-'+ques.id"></p>
+            </div>
+            <button class="btn btn-danger" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+
+    <script>
+        var app = new Vue({
+          delimiters: ['[[', ']]'],
+          el: '#app',
+          data: {
+              message: 'Hello Vue!',
+              course_id: '{{id}}',
+              questions: [],
+              solutions: []
+          },
+          methods: {
+              greet: function(name) {
+                  console.log('Hello from ' + name + '!')
+              },
+              check(question_index, option_index, id){
+                    var question = this.questions[question_index]
+                    var element = document.getElementById(`message-${id}`)
+                    var radio = document.querySelectorAll(`#radio-${id}`)
+
+                    for(var i =0; i<radio.length ;i++){
+                      radio[i].disabled = true
+                    }
+
+                    var solution = {'question_id': id, 'option' : option_index}
+                    this.solutions.push(solution)
+
+                    // if((option_index + 1).toString() == question.answer){
+                    //   element.classList="text-success mt-3"
+                    //   element.innerHTML="Correct Answer 😊"
+                    // }else{
+                    //   element.classList="text-danger mt-3"
+                    //   element.innerHTML="Wrong Answer 😖"
+                    // }
+            },
+            handleSubmit(){
+            console.log(this.solutions)
+            }
+          },
+          mounted(){
+            fetch(`/api/${this.course_id}`)
+            .then(res => res.json())
+            .then(result =>{
+                this.questions = result
+            })
+          }
+        });
+      </script>
+
+{% endblock %}

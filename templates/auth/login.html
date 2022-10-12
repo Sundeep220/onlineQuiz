@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container text-center mt-5">
+<main class="form-signin w-100 m-auto">
+    <form method="post">
+        {% csrf_token %}
+        {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{error}}
+          </div>
+          {% endif %}
+      <h1 class="h3 mt-4 pt-5 mb-4 fw-normal">Please Login</h1>
+      <div class="form-floating">
+        <input type="text" class="form-control mb-2" id="uname" name="uname" placeholder="Username">
+        <label for="floatingInput">Username</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="password" name="pass" class="form-control mt-2" id="pass" placeholder="Password">
+        <label for="floatingPassword">Password</label>
+      </div>
+      <p>Don't Have an account? <a href="{% url 'register' %}"> Register </a></p>
+      <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Sign in</button>
+    </form>
+  </main>
+
+</div>
+
+{% endblock %}
