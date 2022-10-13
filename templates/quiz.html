@@ -44,7 +44,7 @@
                       radio[i].disabled = true
                     }
 
-                    var solution = {'question_id': id, 'option' : option_index}
+                    var solution = {'question_id': id, 'option' : option_index+1}
                     this.solutions.push(solution)
 
                     // if((option_index + 1).toString() == question.answer){
@@ -57,8 +57,26 @@
             },
             handleSubmit(){
             console.log(this.solutions)
-            }
-          },
+            fetch(`/api/check_score`, {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                data: JSON.stringify(this.solutions),
+                course_id: this.course_id
+
+              })
+            })
+            .then(res => res.json())
+            .then(result => {
+              console.log(result)
+              window.location = '/view_score'
+            })
+
+          }
+        },
           mounted(){
             fetch(`/api/${this.course_id}`)
             .then(res => res.json())

@@ -8,6 +8,7 @@ from django.contrib.auth import login, logout, authenticate
 import logging
 logger = logging.getLogger(__name__)
 
+
 # Create your views here.
 
 def loginreq(request):
@@ -47,3 +48,7 @@ def register(request):
             context = {}
             context['error'] = "User already exists."
             return render(request, 'auth/register.html', context)
+
+def logout_req(request):
+    logout(request)
+    return render(request, 'home.html')

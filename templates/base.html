@@ -57,6 +57,9 @@
           white-space: nowrap;
           -webkit-overflow-scrolling: touch;
         }
+        .right {
+        float: right;
+      }
         
       </style>
   </head>
@@ -73,7 +76,7 @@
               <li>
                   <a class="btn btn-primary" href="{% url 'view_score' %}">View Scores</a>
                   <a class="btn btn-warning" href="#">{{ user.username }}</a>
-                  <a class="btn btn-warning" href="#">Logout</a>
+                  <a class="btn btn-warning" href="/user/logout">Logout</a>
               </li>
               {% else %}
               <li>
