@@ -28,21 +28,31 @@ An online quiz application made using Django, Bootstrap, HTML, CSS.
 
 
 -Login page:
+
+
 ![loginpage](https://user-images.githubusercontent.com/93663329/195617987-0484e102-8ef1-40f7-9bbc-083132fee73f.png)
 
 
 -Registeration page: 
+
+
 ![registerpage](https://user-images.githubusercontent.com/93663329/195618020-053645cd-a2ef-4a92-b613-49a2f504f405.png)
 
 
 -Quiz Page:
+
+
 ![screencapture-127-0-0-1-8000-1-2022-10-13-19_18_51](https://user-images.githubusercontent.com/93663329/195618069-05bd9229-bdba-4115-ad29-814a9c752ce2.png)
 
 
 -Scoreboard page:
+
+
 ![scoreboard](https://user-images.githubusercontent.com/93663329/195618050-04eb87a8-c48a-43c6-83ba-9d563885427a.png)
 
 
--Leaderboard: 
+-Leaderboard:
+
+
 ![leaderboard](https://user-images.githubusercontent.com/93663329/195618101-554a23e0-ccea-4eb6-8aa5-55c4a290f8eb.png)
 
