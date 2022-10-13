@@ -4,6 +4,49 @@
 <div class="container mt-4">
     <ul class="list-group">
         <li class="list-group-item active text-center text-white">Leaderboard</li>
+        {% if score %}
+        <table class="table table-bordered table-hover">
+          <thead class="bg-info">
+            <tr>
+              <th scope="col">Rank</th>
+              <th scope="col">User</th>
+              <th scope="col">Course</th>
+              <th scope="col">Score</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for s in score %}
+          {% if s.course.course_name == "Django" %}
+              <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td>{{s.user}}</td>
+                  <td>{{s.course.course_name}}</td>
+                  <td>{{s.score}}</td>
+              </tr>
+              {% endif %}
+          {% endfor %}
+              {% for s in score %}
+              {% if s.course.course_name == "Java" %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{s.user}}</td>
+                <td>{{s.course.course_name}}</td>
+                <td>{{s.score}}</td>
+            </tr>
+           {% endif %}
+            {% endfor %}
+          </li>
+          </tbody>
+          
+        </table>
+        {% else %}
+            <li class="list-group-item">
+                <div class="text-center">
+            <p>Could'nt get the user list</p>
+            <a class="btn btn-dark" href="/">Return ot Home Page</a>
+                </div>
+            </li>
+    {% endif %}
       </ul>
     </div>
 {% endblock %}

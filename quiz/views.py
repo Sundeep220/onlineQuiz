@@ -62,19 +62,22 @@ def check_score(request):
     solutions = json.loads(data.get('data'))
     course = Course.objects.get(id=course_id)
     score = 0
-    
     for solution in solutions:
         question = Question.objects.filter(id=solution.get('question_id')).first()
         if question.answer == solution.get('option'):
             score = score +  question.marks
-    score_board = ScoreBoard(course=course,user=user,score=score)
-    score_board.save()
+    current_score = ScoreBoard.objects.filter(user=user,course=course).first()
+    if current_score is None:
+        score_board = ScoreBoard(course=course,user=user,score=score)
+        score_board.save()
+    else:
+        current_score.score = score
+        current_score.save()
     return JsonResponse({'message': 'success' , 'status': True})
 
 @login_required(login_url='/user/login')
 @csrf_exempt
 def leaderboard(request):
-    # user = request.user
-    # score = ScoreBoard.objects.filter(user=user)
-    # print(score)
-    return render(request, 'leaderboard.html')
+    scores = (ScoreBoard.objects.all().order_by('-score', 'user'))
+    context = {'score' : scores}
+    return render(request, 'leaderboard.html', context)

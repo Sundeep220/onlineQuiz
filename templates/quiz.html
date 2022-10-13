@@ -3,6 +3,7 @@
 
     <div id="app" class="mt-5 pt-5">
         <div class="container">
+          <h3 class="text-center">Start the Quiz </h3><hr>
           <form @submit.prevent="handleSubmit()">
             <div v-for="(ques , index) in questions" :key="ques.id" class="mt-4">
                 <p>[[index+1]]. [[ques.question]]</p>
@@ -14,7 +15,7 @@
                 </div>
                 <p :id="'message-'+ques.id"></p>
             </div>
-            <button class="btn btn-danger" type="submit">Submit</button>
+            <button class="btn btn-danger mb-5" type="submit">Submit</button>
             </form>
         </div>
     </div>

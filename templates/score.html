@@ -9,17 +9,17 @@
     <table class="table table-bordered table-hover">
         <thead class="bg-info">
           <tr>
+            <th scope="col">S.no:</th>
             <th scope="col">Course</th>
             <th scope="col">Score</th>
-            <th scope="col">Attempt</th>
           </tr>
         </thead>
     {% for s in score %}
     <tbody>
         <tr>
+            <td>{{ forloop.counter }}</td>
             <td>{{s.course.course_name}}</td>
             <td>{{s.score}}</td>
-            <td>{{ forloop.counter }}</td>
         </tr>
     </li>
     </tbody>
